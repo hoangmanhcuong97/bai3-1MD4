@@ -1,6 +1,9 @@
 package com.codegym.configuration;
 
 
+import com.codegym.model.Customer;
+import com.codegym.service.CustomerService;
+import com.codegym.service.ICustomerService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -13,6 +16,8 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+
+import java.util.List;
 
 @Configuration
 @EnableWebMvc
@@ -51,6 +56,10 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
+    }
+    @Bean
+    public ICustomerService iCustomerService(){
+        return new CustomerService();
     }
 
 }
